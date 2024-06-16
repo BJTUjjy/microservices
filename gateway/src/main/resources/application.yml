@@ -1,0 +1,56 @@
+server:
+  port: 8888
+
+spring:
+  application:
+    name: api-gateway
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+          lower-case-service-id: true
+    nacos:
+      discovery:
+        server-addr: localhost:8848
+
+      routes:
+        - id: crm-service
+          uri: lb://crm-service
+          predicates:
+            - Path=/crm/**
+          filters:
+            - StripPrefix=1
+        - id: logistic-service
+          uri: lb://logistic-service
+          predicates:
+            - Path=/logistics/**
+          filters:
+            - StripPrefix=1
+        - id: warehouse-service
+          uri: lb://warehouse-service
+          predicates:
+            - Path=/warehouse/**
+          filters:
+            - StripPrefix=1
+        - id: payment-service
+          uri: lb://payment-service
+          predicates:
+            - Path=/payment/**
+          filters:
+            - StripPrefix=1
+
+#security:
+#  oauth2:
+#    client:
+#      provider:
+#        keycloak:
+#          issuer-uri: http://localhost:8080/auth/realms/demo
+#      registration:
+#        keycloak:
+#          client-id: gateway-client
+#          client-secret: your-client-secret
+#          scope: openid, profile, email
+#    resourceserver:
+#      jwt:
+#        issuer-uri: http://localhost:8080/auth/realms/demo

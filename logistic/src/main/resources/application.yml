@@ -1,0 +1,22 @@
+server:
+  port: 8100
+
+spring:
+  application:
+    name: logistic-service
+
+  profiles:
+    active: default
+
+  cloud:
+    nacos:
+      server-addr: localhost:8848
+      # 注册中心
+      discovery:
+        server-addr: localhost:8848
+        ephemeral: false
+      # 配置中心
+      config:
+        server-addr: localhost:8848
+        file-extension: yaml
+

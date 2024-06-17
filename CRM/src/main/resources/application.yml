@@ -20,3 +20,21 @@ spring:
         server-addr: localhost:8848
         file-extension: yaml
 
+resilience4j:
+  circuitbreaker:
+    configs:
+      default:
+        registerHealthIndicator: true
+        slidingWindowSize: 100
+        minimumNumberOfCalls: 10
+        failureRateThreshold: 50
+        waitDurationInOpenState: 10s
+        permittedNumberOfCallsInHalfOpenState: 10
+    instances:
+      logisticService:
+        baseConfig: default
+      warehouseService:
+        baseConfig: default
+      paymentService:
+        baseConfig: default
+

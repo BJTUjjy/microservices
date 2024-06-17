@@ -1,4 +1,4 @@
-package userservice;
+package com.example.crm;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -9,15 +9,9 @@ import org.springframework.web.client.RestTemplate;
 
 @EnableDiscoveryClient
 @SpringBootApplication
-public class CRMApplication {
-	@LoadBalanced
-	@Bean
-	public RestTemplate restTemplate(){
-		return new RestTemplate();
-	}
-
+public class CrmApplication {
 	public static void main(String[] args) {
-		SpringApplication.run(CRMApplication.class, args);
+		SpringApplication.run(CrmApplication.class, args);
 	}
 
 }

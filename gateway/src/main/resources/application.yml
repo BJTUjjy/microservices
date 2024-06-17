@@ -4,15 +4,16 @@ server:
 spring:
   application:
     name: api-gateway
+    nacos:
+      discovery:
+        server-addr: localhost:8848
+
   cloud:
     gateway:
       discovery:
         locator:
           enabled: true
           lower-case-service-id: true
-    nacos:
-      discovery:
-        server-addr: localhost:8848
 
       routes:
         - id: crm-service

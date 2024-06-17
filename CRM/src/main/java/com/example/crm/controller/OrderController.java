@@ -1,6 +1,6 @@
 package com.example.crm.controller;
 
-import com.example.crm.entity.Order;
+import com.example.common.model.Order;
 import com.example.crm.service.CRMService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;

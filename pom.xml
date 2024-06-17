@@ -16,6 +16,11 @@
     <description>javaee-microservices</description>
     <modules>
         <module>CRM</module>
+        <module>logistic</module>
+        <module>warehouse</module>
+        <module>Payment</module>
+        <module>gateway</module>
+        <module>common-lib</module>
     </modules>
     <properties>
         <java.version>17</java.version>
@@ -56,6 +61,12 @@
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-bootstrap</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.example</groupId>
+            <artifactId>common-lib</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
         </dependency>
 
     </dependencies>

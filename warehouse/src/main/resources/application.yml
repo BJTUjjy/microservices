@@ -20,3 +20,12 @@ spring:
         server-addr: localhost:8848
         file-extension: yaml
 
+  datasource:
+    url: jdbc:mysql://localhost:3306/warehouse?useSSL=false&serverTimezone=UTC
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: root
+    password: CHqh5489!
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true

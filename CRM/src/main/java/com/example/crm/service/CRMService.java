@@ -15,17 +15,17 @@ public class CRMService {
 	@Autowired
 	private RestTemplate restTemplate;
 
-	@CircuitBreaker(name = "logisticService", fallbackMethod = "logisticFallback")
+	@CircuitBreaker(name = "logistic-service", fallbackMethod = "logisticFallback")
 	public LogisticResponse callLogisticService(Order order) {
 		return restTemplate.postForObject("http://logistic-service/logistics", order, LogisticResponse.class);
 	}
 
-	@CircuitBreaker(name = "warehouseService", fallbackMethod = "warehouseFallback")
+	@CircuitBreaker(name = "warehouse-service", fallbackMethod = "warehouseFallback")
 	public WarehouseResponse callWarehouseService(Order order) {
 		return restTemplate.postForObject("http://warehouse-service/warehouse", order, WarehouseResponse.class);
 	}
 
-	@CircuitBreaker(name = "paymentService", fallbackMethod = "paymentFallback")
+	@CircuitBreaker(name = "payment-service", fallbackMethod = "paymentFallback")
 	public PaymentResponse callPaymentService(Order order) {
 		return restTemplate.postForObject("http://payment-service/payment", order, PaymentResponse.class);
 	}
@@ -46,12 +46,10 @@ public class CRMService {
 			// 调用支付服务
 			PaymentResponse paymentResponse = callPaymentService(order);
 
-			return "Order processed successfully: " + "\nLogistics: " + logisticResponse.getStatus() + "  "+logisticResponse.getMessage()+
-					"\nWarehouse: " + warehouseResponse.getStatus() +  "  " + warehouseResponse.getMessage()+
-					"\nPayment: " + paymentResponse.getStatus() + "  " + paymentResponse.getMessage();
+			return "Order processed successfully: " + "\nLogistics: " + logisticResponse.getStatus() + "\nWarehouse: " + warehouseResponse.getStatus() + "\nPayment: " + paymentResponse.getStatus();
 		} catch (Exception e) {
 			e.printStackTrace();
-			return "Error processing order: " + e.getMessage();
+			return "Error processing order: " + e.getMessage() + " : " + e.getCause();
 		}
 	}
 

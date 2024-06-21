@@ -1,14 +1,15 @@
 server:
-  port: 8888
+  port: 8080
 
 spring:
   application:
     name: api-gateway
+
+  cloud:
     nacos:
       discovery:
         server-addr: localhost:8848
 
-  cloud:
     gateway:
       discovery:
         locator:
@@ -41,17 +42,3 @@ spring:
           filters:
             - StripPrefix=1
 
-#security:
-#  oauth2:
-#    client:
-#      provider:
-#        keycloak:
-#          issuer-uri: http://localhost:8080/auth/realms/demo
-#      registration:
-#        keycloak:
-#          client-id: gateway-client
-#          client-secret: your-client-secret
-#          scope: openid, profile, email
-#    resourceserver:
-#      jwt:
-#        issuer-uri: http://localhost:8080/auth/realms/demo

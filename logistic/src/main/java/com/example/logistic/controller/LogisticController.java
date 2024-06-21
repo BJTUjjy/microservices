@@ -12,7 +12,10 @@ public class LogisticController {
 
 	@PostMapping("/logistics")
 	public LogisticResponse handleLogistics(@RequestBody Order order) {
-		// 模拟物流处理逻辑
+		//模拟故障
+		if ("simulateFailure".equals(order.getItemId())) {
+			throw new RuntimeException("Simulated failure");
+		}
 		return new LogisticResponse("Logistics processed for order: " + order.getItemId(), "SUCCESS");
 	}
 }
